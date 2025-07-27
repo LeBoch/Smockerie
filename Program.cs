@@ -52,11 +52,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    // Déclare le document Swagger
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Boutique API", Version = "v1" });
-
-    // Définit le schéma d'authentification Bearer
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    c.EnableAnnotations();
+app.UseSwagger();
+app.UseSwaggerUI();
     {
         Type = SecuritySchemeType.Http,
         Scheme = "bearer",
@@ -64,7 +62,7 @@ builder.Services.AddSwaggerGen(c =>
         Description = "Entrer **Bearer <token>**"
     });
 
-    // Applique la sécurité globalement
+    // Applique la sÃ©curitÃ© globalement
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {

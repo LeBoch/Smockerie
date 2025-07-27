@@ -1,5 +1,7 @@
 ﻿// CategoryController.cs
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using Swashbuckle.AspNetCore.Annotations;
 using Smockerie.DTO;
 using Smockerie.Services;
 using System.Collections.Generic;
@@ -23,6 +25,8 @@ namespace Smockerie.Controllers
         /// Retourne la liste de toutes les catégories.
         /// </summary>
         [HttpGet]
+        [SwaggerOperation(Summary = "Liste toutes les catégories", Description = "Retourne toutes les catégories disponibles")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<CategoryDTO>>> GetAll()
         {
             var dtos = await _categoryService.GetAllCategoriesAsync();

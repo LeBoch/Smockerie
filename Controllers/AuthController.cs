@@ -3,8 +3,10 @@ using System.Security.Claims;
 using System.Text;
 using BoutiqueApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Swashbuckle.AspNetCore.Annotations;
 using Smockerie.DTO;
 using Smockerie.Enum;
 using Smockerie.Services;
@@ -28,6 +30,9 @@ namespace Smockerie.Controllers
         public record LoginRequest(string Username, string Password, string? TwoFactorCode = null, string? TwoFactorRecoveryCode = null);
 
         [HttpPost("register")]
+        [SwaggerOperation(Summary = "Inscrit un nouvel utilisateur", Description = "Crée un compte et retourne un token JWT")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Register([FromBody] RegisterRequest req)
         {
             if (await _userService.ValidateCredentialsAsync(req.Username, req.Password) != null)
@@ -39,6 +44,9 @@ namespace Smockerie.Controllers
         }
 
         [HttpPost("login")]
+        [SwaggerOperation(Summary = "Connecte un utilisateur", Description = "Retourne un JWT si les identifiants sont valides")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Login([FromBody] LoginRequest req)
         {
             var user = await _userService.ValidateCredentialsAsync(req.Username, req.Password);
