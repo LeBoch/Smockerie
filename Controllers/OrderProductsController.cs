@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Swashbuckle.AspNetCore.Annotations;
 using Smockerie.Services;
 using Smockerie.DTO;
 using BoutiqueApi.Models;
@@ -20,6 +22,8 @@ namespace Smockerie.Controllers
         // GET all
         [HttpGet]
         [Authorize]
+        [SwaggerOperation(Summary = "Liste les produits commandés", Description = "Retourne toutes les lignes de commande")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<OrderProductDto>>> GetOrderProducts()
         {
             var list = await _svc.GetAllAsync();
@@ -38,6 +42,9 @@ namespace Smockerie.Controllers
 
         // GET by id
         [HttpGet("{id}")]
+        [SwaggerOperation(Summary = "Détail d'un produit commandé", Description = "Retourne une ligne de commande par son identifiant")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<OrderProductDto>> GetOrderProduct(Guid id)
         {
             var op = await _svc.GetByIdAsync(id);
@@ -58,6 +65,9 @@ namespace Smockerie.Controllers
 
         // PUT update
         [HttpPut("{id}")]
+        [SwaggerOperation(Summary = "Met à jour un produit commandé", Description = "Modifie une ligne de commande existante")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> PutOrderProduct(Guid id, [FromBody] OrderProductCreateDto input)
         {
             // on récupère l’entité existante pour garder CreatedAt
@@ -78,6 +88,9 @@ namespace Smockerie.Controllers
 
         // DELETE
         [HttpDelete("{id}")]
+        [SwaggerOperation(Summary = "Supprime un produit commandé", Description = "Supprime la ligne de commande spécifiée")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteOrderProduct(Guid id)
         {
             var deleted = await _svc.DeleteAsync(id);

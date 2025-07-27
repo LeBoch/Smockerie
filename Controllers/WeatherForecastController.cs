@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Smockerie.Controllers
 {
@@ -19,6 +21,8 @@ namespace Smockerie.Controllers
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
+        [SwaggerOperation(Summary = "Exemple météo", Description = "Endpoint d'exemple généré automatiquement")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public IEnumerable<WeatherForecast> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
