@@ -36,27 +36,5 @@ namespace Smockerie.Controllers
             return dto is null ? NotFound() : Ok(dto);
         }
 
-        [HttpPost]
-        [SwaggerOperation(Summary = "Crée un utilisateur", Description = "Ajoute un compte utilisateur")]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<ActionResult<UserDTO>> PostUser([FromBody] UserCreateDto input)
-        {
-            var dto = await _svc.CreateAsync(input);
-            return CreatedAtAction(nameof(GetUser), new { id = dto.Id }, dto);
-        }
-
-        [HttpPut("{id}")]
-        [SwaggerOperation(Summary = "Met à jour un utilisateur", Description = "Modifie un compte existant")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> PutUser(Guid id, [FromBody] UserCreateDto input) =>
-            (await _svc.UpdateAsync(id, input)) ? NoContent() : NotFound();
-
-        [HttpDelete("{id}")]
-        [SwaggerOperation(Summary = "Supprime un utilisateur", Description = "Supprime le compte spécifié")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteUser(Guid id) =>
-            (await _svc.DeleteAsync(id)) ? NoContent() : NotFound();
     }
 }

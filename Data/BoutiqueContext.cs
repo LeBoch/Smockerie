@@ -17,6 +17,5 @@ namespace BoutiqueApi.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Flavor> Flavors { get; set; }
 
-
     }
 }

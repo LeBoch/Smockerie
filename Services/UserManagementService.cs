@@ -45,56 +45,5 @@ namespace Smockerie.Services
             };
         }
 
-        public async Task<UserDTO> CreateAsync(UserCreateDto input)
-        {
-            // vérifs d'unicité ici ou en controller si tu préfères
-            var entity = new User
-            {
-                Id = Guid.NewGuid(),
-                Username = input.Username,
-                Email = input.Email,
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword(input.Password),
-                Role = input.Role,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
-            };
-            _ctx.Users.Add(entity);
-            await _ctx.SaveChangesAsync();
-
-            return new UserDTO
-            {
-                Id = entity.Id,
-                Username = entity.Username,
-                Email = entity.Email,
-                Role = entity.Role,
-                CreatedAt = entity.CreatedAt,
-                UpdatedAt = entity.UpdatedAt
-            };
-        }
-
-        public async Task<bool> UpdateAsync(Guid id, UserCreateDto input)
-        {
-            var u = await _ctx.Users.FindAsync(id);
-            if (u == null) return false;
-
-            u.Username = input.Username;
-            u.Email = input.Email;
-            if (!string.IsNullOrWhiteSpace(input.Password))
-                u.PasswordHash = BCrypt.Net.BCrypt.HashPassword(input.Password);
-            u.Role = input.Role;
-            u.UpdatedAt = DateTime.UtcNow;
-
-            await _ctx.SaveChangesAsync();
-            return true;
-        }
-
-        public async Task<bool> DeleteAsync(Guid id)
-        {
-            var u = await _ctx.Users.FindAsync(id);
-            if (u == null) return false;
-            _ctx.Users.Remove(u);
-            await _ctx.SaveChangesAsync();
-            return true;
-        }
     }
 }

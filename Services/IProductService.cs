@@ -9,7 +9,7 @@ namespace Smockerie.Services
         Task<Product?> GetByIdAsync(int id);
         Task<Product> CreateAsync(ProductCreateDto input);
         Task<bool> UpdateAsync(Product p);
-        Task<bool> DeleteAsync(Guid id);
+        Task<bool> DeleteAsync(int id);
         Task<IEnumerable<ProductDto>> GetByCategoryAsync(int categoryId);
     }
 }

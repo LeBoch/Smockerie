@@ -50,7 +50,7 @@
                 }
             }
 
-            public async Task<bool> DeleteAsync(Guid id)
+            public async Task<bool> DeleteAsync(int id)
             {
                 var p = await _ctx.Products.FindAsync(id);
                 if (p == null) return false;

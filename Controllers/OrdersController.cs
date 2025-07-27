@@ -66,68 +66,68 @@ namespace Smockerie.Controllers
             return Ok(dto);
         }
 
-        // POST: api/Orders
-        [HttpPost]
-        [SwaggerOperation(Summary = "Crée une commande", Description = "Ajoute une nouvelle commande")]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<ActionResult<OrderDTO>> PostOrder([FromBody] OrderCreateDto input)
-        {
-            var order = new Order
-            {
-                Id = Guid.NewGuid(),
-                FullName = input.FullName,
-                Email = input.Email,
-                Phone = input.Phone,
-                Address = input.Address,
-                Status = OrderStatus.Pending,
-                CreatedAt = DateTime.UtcNow
-            };
+        //// POST: api/Orders
+        //[HttpPost]
+        //[SwaggerOperation(Summary = "Crée une commande", Description = "Ajoute une nouvelle commande")]
+        //[ProducesResponseType(StatusCodes.Status201Created)]
+        //public async Task<ActionResult<OrderDTO>> PostOrder([FromBody] OrderCreateDto input)
+        //{
+        //    var order = new Order
+        //    {
+        //        Id = Guid.NewGuid(),
+        //        FullName = input.FullName,
+        //        Email = input.Email,
+        //        Phone = input.Phone,
+        //        Address = input.Address,
+        //        Status = OrderStatus.Pending,
+        //        CreatedAt = DateTime.UtcNow
+        //    };
 
-            var created = await _svc.CreateAsync(order);
+        //    var created = await _svc.CreateAsync(order);
 
-            var dto = new OrderDTO
-            {
-                Id = created.Id,
-                FullName = created.FullName,
-                Email = created.Email,
-                Phone = created.Phone,
-                Address = created.Address,
-                Status = OrderStatus.Pending,
-                CreatedAt = created.CreatedAt
-            };
+        //    var dto = new OrderDTO
+        //    {
+        //        Id = created.Id,
+        //        FullName = created.FullName,
+        //        Email = created.Email,
+        //        Phone = created.Phone,
+        //        Address = created.Address,
+        //        Status = OrderStatus.Pending,
+        //        CreatedAt = created.CreatedAt
+        //    };
 
-            return CreatedAtAction(nameof(GetOrder), new { id = dto.Id }, dto);
-        }
+        //    return CreatedAtAction(nameof(GetOrder), new { id = dto.Id }, dto);
+        //}
 
-        // PUT: api/Orders/5
-        [HttpPut("{id}")]
-        [SwaggerOperation(Summary = "Met à jour une commande", Description = "Modifie les informations d'une commande existante")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> PutOrder(Guid id, [FromBody] OrderCreateDto input)
-        {
-            var existing = await _svc.GetByIdAsync(id);
-            if (existing == null) return NotFound();
+        //// PUT: api/Orders/5
+        //[HttpPut("{id}")]
+        //[SwaggerOperation(Summary = "Met à jour une commande", Description = "Modifie les informations d'une commande existante")]
+        //[ProducesResponseType(StatusCodes.Status204NoContent)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //public async Task<IActionResult> PutOrder(Guid id, [FromBody] OrderCreateDto input)
+        //{
+        //    var existing = await _svc.GetByIdAsync(id);
+        //    if (existing == null) return NotFound();
 
-            // mappe les champs modifiables
-            existing.FullName = input.FullName;
-            existing.Email = input.Email;
-            existing.Phone = input.Phone;
-            existing.Address = input.Address;
+        //    // mappe les champs modifiables
+        //    existing.FullName = input.FullName;
+        //    existing.Email = input.Email;
+        //    existing.Phone = input.Phone;
+        //    existing.Address = input.Address;
 
-            var updated = await _svc.UpdateAsync(existing);
-            return updated ? NoContent() : NotFound();
-        }
+        //    var updated = await _svc.UpdateAsync(existing);
+        //    return updated ? NoContent() : NotFound();
+        //}
 
-        // DELETE: api/Orders/5
-        [HttpDelete("{id}")]
-        [SwaggerOperation(Summary = "Supprime une commande", Description = "Supprime la commande spécifiée")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteOrder(Guid id)
-        {
-            var deleted = await _svc.DeleteAsync(id);
-            return deleted ? NoContent() : NotFound();
-        }
+        //// DELETE: api/Orders/5
+        //[HttpDelete("{id}")]
+        //[SwaggerOperation(Summary = "Supprime une commande", Description = "Supprime la commande spécifiée")]
+        //[ProducesResponseType(StatusCodes.Status204NoContent)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //public async Task<IActionResult> DeleteOrder(Guid id)
+        //{
+        //    var deleted = await _svc.DeleteAsync(id);
+        //    return deleted ? NoContent() : NotFound();
+        //}
     }
 }

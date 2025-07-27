@@ -97,7 +97,7 @@ namespace Smockerie.Controllers
         [SwaggerOperation(Summary = "Supprime un produit", Description = "Supprime le produit spécifié")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteProduct(Guid id)
+        public async Task<IActionResult> DeleteProduct(int id)
         {
             var deleted = await _svc.DeleteAsync(id);
             return deleted ? NoContent() : NotFound();

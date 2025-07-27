@@ -262,3 +262,5 @@ C:\Users\thera\source\repos\Smockerie\Smockerie\bin\Debug\net8.0\runtimes\win\li
 C:\Users\thera\source\repos\Smockerie\Smockerie\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 C:\Users\thera\source\repos\Smockerie\Smockerie\bin\Debug\net8.0\BCrypt.Net-Core.dll
 C:\Users\thera\source\repos\Smockerie\Smockerie\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\thera\source\repos\Smockerie\Smockerie\obj\Debug\net8.0\Smockerie.sourcelink.json
+C:\Users\thera\source\repos\Smockerie\Smockerie\bin\Debug\net8.0\Swashbuckle.AspNetCore.Annotations.dll

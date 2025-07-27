@@ -63,38 +63,38 @@ namespace Smockerie.Controllers
             return Ok(dto);
         }
 
-        // PUT update
-        [HttpPut("{id}")]
-        [SwaggerOperation(Summary = "Met à jour un produit commandé", Description = "Modifie une ligne de commande existante")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> PutOrderProduct(Guid id, [FromBody] OrderProductCreateDto input)
-        {
-            // on récupère l’entité existante pour garder CreatedAt
-            var existing = await _svc.GetByIdAsync(id);
-            if (existing == null) return NotFound();
+        //// PUT update
+        //[HttpPut("{id}")]
+        //[SwaggerOperation(Summary = "Met à jour un produit commandé", Description = "Modifie une ligne de commande existante")]
+        //[ProducesResponseType(StatusCodes.Status204NoContent)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //public async Task<IActionResult> PutOrderProduct(Guid id, [FromBody] OrderProductCreateDto input)
+        //{
+        //    // on récupère l’entité existante pour garder CreatedAt
+        //    var existing = await _svc.GetByIdAsync(id);
+        //    if (existing == null) return NotFound();
 
-            // map input sur l’entité
-            existing.OrderId = input.OrderId;
-            existing.ProductId = input.ProductId;
-            existing.Name = input.Name;
-            existing.Price = input.Price;
-            existing.Quantity = input.Quantity;
+        //    // map input sur l’entité
+        //    existing.OrderId = input.OrderId;
+        //    existing.ProductId = input.ProductId;
+        //    existing.Name = input.Name;
+        //    existing.Price = input.Price;
+        //    existing.Quantity = input.Quantity;
 
-            var updated = await _svc.UpdateAsync(existing);
-            return updated ? NoContent() : NotFound();
-        }
+        //    var updated = await _svc.UpdateAsync(existing);
+        //    return updated ? NoContent() : NotFound();
+        //}
 
 
-        // DELETE
-        [HttpDelete("{id}")]
-        [SwaggerOperation(Summary = "Supprime un produit commandé", Description = "Supprime la ligne de commande spécifiée")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteOrderProduct(Guid id)
-        {
-            var deleted = await _svc.DeleteAsync(id);
-            return deleted ? NoContent() : NotFound();
-        }
+        //// DELETE
+        //[HttpDelete("{id}")]
+        //[SwaggerOperation(Summary = "Supprime un produit commandé", Description = "Supprime la ligne de commande spécifiée")]
+        //[ProducesResponseType(StatusCodes.Status204NoContent)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //public async Task<IActionResult> DeleteOrderProduct(Guid id)
+        //{
+        //    var deleted = await _svc.DeleteAsync(id);
+        //    return deleted ? NoContent() : NotFound();
+        //}
     }
 }

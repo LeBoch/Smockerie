@@ -6,8 +6,8 @@ namespace Smockerie.Services
     {
         Task<IEnumerable<Order>> GetAllAsync();
         Task<Order?> GetByIdAsync(Guid id);
-        Task<Order> CreateAsync(Order order);
-        Task<bool> UpdateAsync(Order order);
-        Task<bool> DeleteAsync(Guid id);
+        //Task<Order> CreateAsync(Order order);
+        //Task<bool> UpdateAsync(Order order);
+        //Task<bool> DeleteAsync(Guid id);
     }
 }

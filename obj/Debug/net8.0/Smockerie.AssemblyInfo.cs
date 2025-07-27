@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Smockerie")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5b60f88cefbecbab42b4acdd64d9c21ebea43fc7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Smockerie")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Smockerie")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
