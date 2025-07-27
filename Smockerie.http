@@ -1,0 +1,6 @@
+@Smockerie_HostAddress = http://localhost:5275
+
+GET {{Smockerie_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
